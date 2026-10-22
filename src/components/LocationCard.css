@@ -1,0 +1,52 @@
+.loc {
+  position: relative; container-type: inline-size;
+  padding: clamp(16px, 4.6vw, 34px);
+  background: var(--cream); border-radius: var(--radius-card);
+  box-shadow: 0 8px 0 rgba(17, 21, 20, 0.12);
+  opacity: 0; translate: 0 28px;
+  transition: opacity 0.6s, translate 0.8s var(--ease-out);
+}
+.loc.is-in { opacity: 1; translate: 0 0; }
+
+.loc__grid {
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-areas: 'info map' 'wa map'; column-gap: 4cqw; row-gap: 4cqw; align-items: start;
+}
+.loc__info { grid-area: info; }
+.loc__label { display: flex; align-items: center; gap: 2cqw; margin: 0 0 3cqw; font-size: max(10px, 2.8cqw); font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+.loc__pin { display: grid; place-items: center; flex: none; width: 8cqw; height: 8cqw; max-width: 44px; max-height: 44px; border-radius: 50%; background: var(--ink); color: var(--cream); }
+.loc__pin .icon { width: 55%; height: 55%; }
+.loc__address { margin: 0; font-family: var(--font-serif); font-weight: 400; font-size: clamp(18px, 5.6cqw, 42px); line-height: 1.22; }
+/* Línea divisora: ocupa todo el ancho de la columna */
+.loc__rule { display: block; width: 100%; height: 1px; margin-top: 3.5cqw; background: var(--ink); }
+
+.loc__wa {
+  grid-area: wa; align-self: end; display: flex; align-items: center; gap: 2cqw;
+  padding: 2.4cqw 3.4cqw; border-radius: 999px; background: #0ada4d; color: #fff;
+  text-decoration: none; font-weight: 800; font-size: max(10px, 2.9cqw); letter-spacing: 0.04em; text-transform: uppercase;
+  transition: transform 0.2s var(--ease-out);
+}
+.loc__wa span:not(.icon) { flex: 1; }
+.loc__wa-icon { width: 1.9em; height: 1.9em; }
+.loc__wa-arrow { transition: translate 0.25s var(--ease-out); }
+.loc__wa:active { transform: scale(0.98); }
+@media (hover: hover) {
+  .loc__wa:hover { transform: translateY(-2px); }
+  .loc__wa:hover .loc__wa-arrow { translate: 4px 0; }
+}
+
+.loc__map {
+  grid-area: map; position: relative; display: block; align-self: stretch; min-height: 120px;
+  border: 2px solid var(--ink); border-radius: var(--radius-map); background-size: cover;
+}
+.loc__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: calc(var(--radius-map) - 2px); pointer-events: none; }
+
+@container (max-width: 430px) {
+  .loc__grid { grid-template-areas: 'info map' 'wa wa'; }
+  .loc__wa { justify-self: stretch; }
+  .loc__map { min-height: 38cqw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loc { opacity: 1; translate: none; }
+}

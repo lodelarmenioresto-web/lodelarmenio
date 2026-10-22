@@ -1,0 +1,38 @@
+.modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; background: rgba(17, 21, 20, 0.72); backdrop-filter: blur(6px); animation: fade 0.2s ease-out both; }
+.modal__panel { display: flex; flex-direction: column; width: min(980px, 100%); height: min(94svh, 100%); background: var(--cream); border-radius: calc(var(--radius-card) * 2) calc(var(--radius-card) * 2) 0 0; overflow: hidden; animation: sheet 0.4s var(--ease-out) both; }
+.modal__bar { display: flex; align-items: center; gap: 10px; padding: 14px 14px 14px 20px; border-bottom: 2px solid var(--ink); background: var(--orange); }
+.modal__bar h2 { flex: 1; margin: 0; font-family: var(--font-script); font-weight: 400; font-size: 26px; }
+.modal__dl, .modal__close { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; background: var(--ink); color: var(--white); text-decoration: none; font-weight: 700; font-size: 13px; }
+.modal__dl { padding: 10px 16px; }
+.modal__close { width: 42px; height: 42px; justify-content: center; }
+.modal__body { flex: 1; overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 12px; background: #2a2d2c; }
+.modal__page { width: max-content; max-width: 100%; margin: 0 auto 12px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
+.modal__page canvas { display: block; max-width: 100%; height: auto !important; }
+.modal__msg { margin: 40px 16px; color: var(--white); text-align: center; }
+.modal.is-closing { animation: fade 0.18s ease-in reverse both; }
+.modal.is-closing .modal__panel { animation: sheet 0.18s ease-in reverse both; }
+
+@media (min-width: 900px) {
+  .modal { align-items: center; padding: 24px; }
+  .modal__panel { height: min(90svh, 100%); border-radius: var(--radius-card); border: 2px solid var(--ink); animation-name: pop-in; animation-duration: 0.35s; }
+  .modal.is-closing .modal__panel { animation-name: pop-in; }
+}
+
+.modal__body { flex: 1; overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 12px; background: #2a2d2c; touch-action: pan-x pan-y; }
+.modal__body.is-zoomed { cursor: grab; }
+.modal__body.is-panning { cursor: grabbing; user-select: none; }
+.modal__zoom { margin: 0 auto; user-select: none; -webkit-user-select: none; }
+.modal__page { width: 100% !important; min-width: 0 !important; min-height: 0 !important; margin: 0 0 12px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
+.modal__page canvas { display: block; width: 100% !important; height: auto !important; }
+
+/* Botones de zoom en la barra */
+.modal__tools { display: flex; align-items: center; gap: 6px; }
+.modal__zbtn { width: 36px; height: 36px; border: 0; border-radius: 999px; background: var(--ink); color: var(--white); font-size: 22px; font-weight: 800; line-height: 1; }
+.modal__zbtn:disabled { opacity: 0.35; cursor: default; }
+.modal__zval { min-width: 3.2em; text-align: center; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) {
+  .modal__bar { gap: 6px; padding-left: 14px; }
+  .modal__bar h2 { font-size: 20px; }
+  .modal__zval, .modal__dl span { display: none; }
+  .modal__dl { padding: 0; width: 42px; height: 42px; justify-content: center; }
+}

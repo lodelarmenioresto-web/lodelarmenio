@@ -1,0 +1,9 @@
+/* Contenedor de las cards de sedes (se superpone un poco a la mascota). */
+.locations {
+  display: grid; justify-content: center; gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 640px));
+  padding: 0 clamp(14px, 5.8vw, 40px); margin-top: -3.5vw; position: relative; z-index: 3;
+}
+@media (min-width: 900px) {
+  .locations { margin-top: -56px; gap: 28px; }
+}

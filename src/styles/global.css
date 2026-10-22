@@ -1,0 +1,60 @@
+/* =====================================================================
+   GLOBAL: colores, tipografías, radios, reset y animaciones compartidas.
+   Los estilos de cada componente viven en components/<Componente>.css
+   ===================================================================== */
+
+:root {
+  /* Colores */
+  --orange: #f7a31c;
+  --ink: #111514;
+  --cream: #f4ebdd;
+  --white: #fffdf8;
+  --whatsapp: #31f068;
+
+  /* Tipografías */
+  --font-script: 'Kaushan Script', 'Brush Script MT', cursive;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-ui: 'Montserrat', system-ui, sans-serif;
+
+  /* Bordes redondeados */
+  --radius-card: 12px;
+  --radius-btn: 10px;
+  --radius-map: 8px;
+
+  /* Animación */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-pop: cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  background-color: var(--orange);
+  background-image: conic-gradient(
+    rgba(255, 255, 255, 0.07) 25%, transparent 0 50%,
+    rgba(255, 255, 255, 0.07) 0 75%, transparent 0
+  );
+  background-size: 72px 72px;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* Animaciones compartidas */
+@keyframes drop { from { opacity: 0; translate: 0 calc(var(--u, 8px) * -4); scale: 0.92; } }
+@keyframes rise { from { opacity: 0; translate: 0 calc(var(--u, 8px) * 3); } }
+@keyframes pop { from { opacity: 0; scale: 0.6; rotate: 8deg; } }
+@keyframes bob { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: 0 calc(var(--u, 8px) * -1.4); rotate: 1.5deg; } }
+@keyframes pulse { 0%, 100% { opacity: 1; scale: 1; } 50% { opacity: 0.35; scale: 0.8; } }
+@keyframes pop-in { from { opacity: 0; scale: 0.4; } to { opacity: 1; scale: 1; } }
+@keyframes fade { from { opacity: 0; } }
+@keyframes sheet { from { opacity: 0; translate: 0 40px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,20 @@
+.social { position: relative; padding: clamp(40px, 9vw, 72px) 20px clamp(40px, 10vw, 72px); text-align: center; }
+.social__title { margin: 0; line-height: 0; }
+.social__title img { width: clamp(230px, 62vw, 340px); margin: 0 auto; }
+.social__list { display: flex; justify-content: center; gap: clamp(14px, 4vw, 26px); margin: 22px 0 0; padding: 0; list-style: none; }
+.social__btn {
+  display: grid; place-items: center; width: 50px; aspect-ratio: 1; border-radius: 50%;
+  background: var(--ink); color: var(--cream); font-size: clamp(24px, 7vw, 34px);
+  transition: transform 0.25s var(--ease-pop), background 0.2s;
+}
+.social__btn:active { transform: scale(0.92); }
+@media (hover: hover) { .social__btn:hover { transform: translateY(-4px) rotate(-6deg) scale(1.06); background: #000; } }
+
+.social__list li { opacity: 0; scale: 0.4; }
+.social.is-in .social__list li { animation: pop-in 0.55s var(--ease-pop) both; }
+.social.is-in .social__list li:nth-child(2) { animation-delay: 0.1s; }
+.social.is-in .social__list li:nth-child(3) { animation-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .social__list li { opacity: 1; scale: 1; }
+}

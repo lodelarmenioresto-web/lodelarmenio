@@ -1,0 +1,72 @@
+/* Mobile first: composición tipo póster que escala con el ancho (1u = 1cqw). */
+.hero {
+  --u: 1cqw;
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 1024 / 790;
+  overflow: hidden;
+}
+.hero__inner { position: absolute; inset: 0; top: 0}
+
+.logo { position: absolute; left: 3%; top: 14%; width: 80%; margin: 0; animation: drop 0.8s 0.1s var(--ease-pop) both; z-index: 20; }
+.logo img { width: 100%; filter: drop-shadow(0 calc(var(--u) * 0.5) 0 rgba(17, 21, 20, 0.22)); }
+
+.hero__mascot { position: absolute; right: 1%; bottom: -3%; width: 34%; animation: pop 0.9s 0.5s var(--ease-pop) both; }
+.hero__mascot > img:first-child { width: 100%; animation: bob 4.2s 1.5s ease-in-out infinite; }
+.sparks { position: absolute; width: 12%; animation: pulse 2.4s ease-in-out infinite; }
+.sparks--a { left: -6%; top: 58%; }
+.sparks--b { right: 2%; top: 2%; rotate: 150deg; animation-delay: -1.2s; }
+
+.cta {
+  z-index: 2; position: absolute; left: 7%; top: 73%; width: 58%; height: 13%;
+  display: flex; align-items: center; gap: calc(var(--u) * 2.4); padding: 0 calc(var(--u) * 3.6);
+  border: 0; border-radius: var(--radius-btn); background: var(--ink); color: var(--white);
+  font-family: var(--font-ui); font-weight: 800; font-size: calc(var(--u) * 3.3);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  box-shadow: 0 calc(var(--u) * 1) 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+  animation: rise 0.6s 0.8s var(--ease-out) both;
+}
+.cta .icon { width: calc(var(--u) * 5.4); height: calc(var(--u) * 5.4); }
+.cta__sep { width: 2px; align-self: stretch; margin: 22% 0; background: rgba(255, 255, 255, 0.35); }
+.cta__text { flex: 1; white-space: nowrap; text-align: center; }
+.cta:active { transform: translateY(2px) scale(0.98); box-shadow: 0 0 0 rgba(0, 0, 0, 0.2); }
+@media (hover: hover) { .cta:hover { transform: translateY(-2px); } }
+
+/* Laptop / escritorio: dos columnas */
+@media (min-width: 900px) {
+  .hero {
+    --u: clamp(6px, 0.56vw, 8.5px);
+    aspect-ratio: auto; min-height: min(780px, calc(100svh - 24px));
+    display: flex; align-items: stretch; justify-content: center;
+  }
+  .hero__inner {
+    position: relative; inset: auto; width: min(1180px, 92%); padding: 0;
+    display: grid; grid-template-columns: 1.05fr 0.95fr; grid-template-areas: 'logo mascot' 'cta mascot';
+    align-items: center; justify-items: start; column-gap: calc(var(--u) * 4); 
+  }
+  .logo, .cta { position: relative; left: auto; top: auto; }
+  .logo { grid-area: logo; width: calc(var(--u) * 68); margin-left: 0vw;top:0%; left:45% }
+  .hero__mascot {
+    position: relative; right: auto; bottom: auto; grid-area: mascot;
+    align-self: end; justify-self: center; width: 300px; right: 18%
+  }
+  .cta {
+  left: 45%;
+  top: 0%;
+  width: 58%;
+  height: 13%;
+  padding: 32px calc(var(--u) * 3.6);
+  font-size: 18px;
+}
+
+  .cta .icon {
+  width: calc(var(--u) * 5.4);
+  height: calc(var(--u) * 5.4);
+}
+.hero {
+  min-height: 0;
+  height: min(680px, calc(100svh - 24px));
+}
+
+}
