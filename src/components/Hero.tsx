@@ -1,4 +1,4 @@
-import { deco, icons, images } from '../assets';
+import { icons, images } from '../assets';
 import Icon from './Icon';
 import './Hero.css';
 
